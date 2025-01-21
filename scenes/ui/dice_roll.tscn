@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu3k4k8gcsywn"]
+[gd_scene load_steps=4 format=3 uid="uid://bu3k4k8gcsywn"]
 
 [ext_resource type="PackedScene" uid="uid://d1gdb84eg66ac" path="res://scenes/ui/dice.tscn" id="1_0qvyw"]
-[ext_resource type="Script" uid="uid://bcn4fekiehch1" path="res://scenes/ui/dice_roll.gd" id="1_f526d"]
+[ext_resource type="Theme" uid="uid://tuelu358cjri" path="res://resources/themes/dice_roll_theme.tres" id="1_1v3kv"]
+[ext_resource type="Script" uid="uid://bcn4fekiehch1" path="res://scripts/ui/dice_general.gd" id="1_f526d"]
 
 [node name="DiceRoll" type="Control"]
 layout_mode = 3
@@ -10,10 +11,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_1v3kv")
 script = ExtResource("1_f526d")
 metadata/_tab_index = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,70 +23,94 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Dice_VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Dice_VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="D4" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+[node name="D4" parent="MarginContainer/HBoxContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
 layout_mode = 2
 dice_name = 1
 
-[node name="D6" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+[node name="D6" parent="MarginContainer/HBoxContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
 layout_mode = 2
 dice_name = 2
 
-[node name="D8" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+[node name="D8" parent="MarginContainer/HBoxContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
 layout_mode = 2
 dice_name = 3
 
-[node name="D10" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+[node name="D10" parent="MarginContainer/HBoxContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
 layout_mode = 2
 dice_name = 4
 
-[node name="D12" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+[node name="D12" parent="MarginContainer/HBoxContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
 layout_mode = 2
 dice_name = 5
 
-[node name="D20" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+[node name="D20" parent="MarginContainer/HBoxContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
 layout_mode = 2
 dice_name = 6
 
-[node name="D100" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+[node name="D100" parent="MarginContainer/HBoxContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
 layout_mode = 2
 dice_name = 7
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Modifier"
+
+[node name="TotalModifier_SpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer3" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 10
 
-[node name="Throw_Button" type="Button" parent="HBoxContainer/MarginContainer2"]
+[node name="Throw_Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(50, 35)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 35.0
+grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Roll"
 
-[node name="Result_Label" type="Label" parent="HBoxContainer/MarginContainer2"]
+[node name="Result_Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -285.5
+offset_top = -23.0
+offset_right = 285.5
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 8
 text = "Result:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="HBoxContainer/MarginContainer2/Throw_Button" to="." method="_on_throw_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer3/Throw_Button" to="." method="_on_throw_button_pressed"]

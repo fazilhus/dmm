@@ -5,6 +5,7 @@ class_name Dice
 
 @onready var dice_name_label : Label = %DiceName_Label
 @onready var amount_spinbox : SpinBox = %Amount_SpinBox
+@onready var modifier_spinbox : SpinBox = %Modifier_SpinBox
 
 func _ready():
 	_refresh()
@@ -14,3 +15,6 @@ func _refresh():
 
 func get_dice_amount() -> int:
 	return int(amount_spinbox.value)
+
+func get_dice_modifier() -> int:
+	return int(modifier_spinbox.value)
