@@ -1,0 +1,40 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="dmm"
+run/main_scene="uid://6d4kc5cbe5nh"
+config/features=PackedStringArray("4.4", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Loggie="*res://addons/loggie/loggie.gd"
+Enum="*res://scripts/enum.gd"
+Rand="*res://scripts/rand.gd"
+Util="*res://scripts/util.gd"
+
+[dotnet]
+
+project/assembly_name="dmm"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/loggie/plugin.cfg")
+
+[physics]
+
+2d/run_on_separate_thread=true
+3d/run_on_separate_thread=true
+
+[rendering]
+
+renderer/rendering_method="mobile"

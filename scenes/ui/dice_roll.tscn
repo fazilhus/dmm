@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu3k4k8gcsywn"]
+
+[ext_resource type="PackedScene" uid="uid://d1gdb84eg66ac" path="res://scenes/ui/dice.tscn" id="1_0qvyw"]
+[ext_resource type="Script" uid="uid://bcn4fekiehch1" path="res://scenes/ui/dice_roll.gd" id="1_f526d"]
+
+[node name="DiceRoll" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f526d")
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Dice_VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="D4" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+layout_mode = 2
+dice_name = 1
+
+[node name="D6" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+layout_mode = 2
+dice_name = 2
+
+[node name="D8" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+layout_mode = 2
+dice_name = 3
+
+[node name="D10" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+layout_mode = 2
+dice_name = 4
+
+[node name="D12" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+layout_mode = 2
+dice_name = 5
+
+[node name="D20" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+layout_mode = 2
+dice_name = 6
+
+[node name="D100" parent="HBoxContainer/MarginContainer/ScrollContainer/Dice_VBoxContainer" instance=ExtResource("1_0qvyw")]
+layout_mode = 2
+dice_name = 7
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="Throw_Button" type="Button" parent="HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Roll"
+
+[node name="Result_Label" type="Label" parent="HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "Result:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/Throw_Button" to="." method="_on_throw_button_pressed"]

@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://dosqv52nqfpsd"]
+
+[resource]
+MarginContainer/constants/margin_left = 65
+MarginContainer/constants/margin_right = 65
+VBoxContainer/constants/separation = 6
